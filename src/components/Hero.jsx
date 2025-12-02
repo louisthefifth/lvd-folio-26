@@ -36,71 +36,65 @@ Previous lives; Content Strategist, Copywriter, Data Planner, Marketer.`
   ]
 
   return (
-    <section id="home" className="relative bg-[#27282c] overflow-hidden border-b border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32">
-        <div className="mb-12 sm:mb-20">
-          <h1 className="font-satoshi text-5xl sm:text-6xl lg:text-8xl font-normal text-white mb-0 leading-tight">
-            Hey, I am Louis
-          </h1>
-          <br></br>
-          <br></br>
-          <p className="font-satoshi text-2xl sm:text-3xl lg:text-4xl text-white font-normal leading-tight">
-            Nice to meet you:
-          </p>
-        </div>
+    <section id="intro" className="scroll-mt-24">
+      <div className="space-y-6">
+        <p className="section-label">Intro</p>
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight text-white">
+          Hey, I’m Louis — a product designer partnering with founders and product teams to build purposeful experiences.
+        </h1>
+        <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-gray-400">
+          Over the last 8+ years I’ve helped launch and evolve digital products across health, retail, fintech and AI. I work best embedded with ambitious teams that want design to unlock measurable outcomes.
+        </p>
+      </div>
 
-        <div className="bg-gray-800 rounded-lg overflow-hidden shadow-2xl mb-12">
-          <div className="border-b border-gray-700 bg-gray-700 px-4 py-3">
-            <div className="flex items-center justify-between gap-4 mb-3">
-              <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
-                <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
-                <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
-              </div>
-            </div>
-            <div className="overflow-x-auto -mx-4 px-4 scrollbar-hide">
-              <div className="flex gap-2 min-w-max">
-                {audiences.map((audience) => (
-                  <button
-                    key={audience.id}
-                    onClick={() => setActiveAudience(audience.id)}
-                    className={`px-4 sm:px-4 py-2 sm:py-1.5 text-sm sm:text-sm rounded transition-all whitespace-nowrap ${activeAudience === audience.id
-                        ? 'bg-white text-black font-medium'
-                        : 'bg-transparent text-gray-300 hover:text-white hover:bg-gray-600'
-                      }`}
-                  >
-                    {audience.name}
-                  </button>
-                ))}
-              </div>
-            </div>
+      <div className="mt-12">
+        <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">For</p>
+        <div className="relative">
+          <div className="flex gap-6 overflow-x-auto pb-4">
+            {audiences.map((audience) => (
+              <button
+                key={audience.id}
+                onClick={() => setActiveAudience(audience.id)}
+                className={`group relative pb-3 text-sm font-medium tracking-wide transition-colors ${
+                  activeAudience === audience.id ? 'text-white' : 'text-gray-500 hover:text-gray-300'
+                }`}
+              >
+                {audience.name}
+                <span
+                  className={`pointer-events-none absolute inset-x-0 -bottom-px h-[2px] transition-colors duration-200 ${
+                    activeAudience === audience.id ? 'bg-[#3da8ff]' : 'bg-transparent group-hover:bg-gray-500'
+                  }`}
+                ></span>
+              </button>
+            ))}
           </div>
-          <div className="bg-[#2b2b2b] text-gray-100 p-6 sm:p-8 min-h-[280px] flex items-start">
-            {activeAudience === 'antiremote' ? (
-              <p className="text-base sm:text-lg leading-relaxed w-full">
-                {audienceContent[activeAudience].text.split(' ').map((word, wordIndex) => (
-                  <span key={wordIndex} className="inline-block mr-1">
-                    {word.split('').map((char, charIndex) => (
-                      <span
-                        key={charIndex}
-                        className="inline-block"
-                        style={{
-                          animation: `wave 1s ease-in-out infinite`,
-                          animationDelay: `${(wordIndex * 10 + charIndex) * 0.05}s`
-                        }}
-                      >
-                        {char}
-                      </span>
-                    ))}
-                  </span>
-                ))}
-              </p>
-            ) : (
-              <p className="text-base sm:text-lg leading-relaxed whitespace-pre-line w-full">
-                {audienceContent[activeAudience].text}
-              </p>
-            )}
-          </div>
+          <div className="h-px bg-gray-800" aria-hidden="true"></div>
+        </div>
+        <div className="pt-6 text-gray-100 min-h-[170px]">
+          {activeAudience === 'antiremote' ? (
+            <p className="text-base sm:text-lg leading-relaxed">
+              {audienceContent[activeAudience].text.split(' ').map((word, wordIndex) => (
+                <span key={wordIndex} className="inline-block mr-1">
+                  {word.split('').map((char, charIndex) => (
+                    <span
+                      key={charIndex}
+                      className="inline-block"
+                      style={{
+                        animation: `wave 1s ease-in-out infinite`,
+                        animationDelay: `${(wordIndex * 10 + charIndex) * 0.05}s`
+                      }}
+                    >
+                      {char}
+                    </span>
+                  ))}
+                </span>
+              ))}
+            </p>
+          ) : (
+            <p className="text-base sm:text-lg leading-relaxed whitespace-pre-line">
+              {audienceContent[activeAudience].text}
+            </p>
+          )}
         </div>
       </div>
     </section>
