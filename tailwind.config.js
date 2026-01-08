@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -18,8 +19,13 @@ export default {
         'jetbrains-green': '#499c54',
         'jetbrains-purple': '#9876aa',
       },
+      backgroundColor: {
+        'theme': 'var(--color-bg)',
+      },
+      textColor: {
+        'theme': 'var(--color-text)',
+      },
     },
   },
   plugins: [],
 }
-

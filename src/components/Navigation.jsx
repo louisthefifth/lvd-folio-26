@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
+import ThemeToggle from './ThemeToggle'
+import Logo from './Logo'
 
 const navItems = [
   { id: 'intro', label: 'Intro' },
@@ -11,10 +13,15 @@ const navItems = [
 const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('intro')
+  const isScrollingRef = useRef(false)
+  const scrollTimeoutRef = useRef(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
+        // Don't update during manual scroll
+        if (isScrollingRef.current) return
+
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setActiveSection(entry.target.id)
@@ -22,7 +29,8 @@ const Navigation = () => {
         })
       },
       {
-        rootMargin: '-50% 0px -50% 0px'
+        threshold: 0.2,
+        rootMargin: '-100px 0px -50% 0px'
       }
     )
 
@@ -36,22 +44,50 @@ const Navigation = () => {
     return () => observer.disconnect()
   }, [])
 
+  const handleNavClick = (e, id) => {
+    e.preventDefault()
+    setMobileMenuOpen(false)
+    setActiveSection(id)
+    
+    // Disable intersection observer during scroll
+    isScrollingRef.current = true
+    
+    // Clear any existing timeout
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current)
+    }
+    
+    const element = document.getElementById(id)
+    if (element) {
+      const offset = 80
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - offset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+    }
+
+    // Re-enable intersection observer after scroll completes
+    scrollTimeoutRef.current = setTimeout(() => {
+      isScrollingRef.current = false
+    }, 1000)
+  }
+
   const renderNavLinks = (isMobile = false) => (
-    <ul className={isMobile ? 'space-y-4' : 'space-y-4'}>
+    <ul className={isMobile ? 'space-y-6' : 'space-y-6'}>
       {navItems.map((item) => (
         <li key={item.id}>
           <a
             href={`#${item.id}`}
-            onClick={() => setMobileMenuOpen(false)}
-            className={`group flex items-center gap-4 text-[0.75rem] uppercase tracking-[0.38em] transition-colors ${
-              activeSection === item.id ? 'text-white' : 'text-gray-500 hover:text-gray-300'
+            onClick={(e) => handleNavClick(e, item.id)}
+            className={`group font-satoshi text-lg transition-all cursor-pointer ${
+              activeSection === item.id 
+                ? 'text-[#313131] dark:text-[#f8f8f8] font-bold' 
+                : 'text-gray-500 hover:text-[#313131] dark:text-gray-400 dark:hover:text-[#f8f8f8] font-normal'
             }`}
           >
-            <span
-              className={`h-px w-14 transition-colors duration-200 ${
-                activeSection === item.id ? 'bg-white' : 'bg-gray-700 group-hover:bg-gray-500'
-              }`}
-            ></span>
             <span className="whitespace-nowrap">{item.label}</span>
           </a>
         </li>
@@ -62,58 +98,58 @@ const Navigation = () => {
   return (
     <div className="lg:w-64 xl:w-72 flex-shrink-0">
       <div className="lg:hidden mb-6 flex items-center justify-between">
-        <div>
-          <a href="#intro" className="text-lg font-semibold text-white">
-            Louis Valenzuela
-          </a>
-          <p className="text-xs text-gray-500">Product designer & strategic partner</p>
+        {/* Logo for mobile */}
+        <div className="h-10 w-10 flex items-center justify-center">
+          <Logo className="w-10 h-10" />
         </div>
-        <button
-          onClick={() => setMobileMenuOpen((prev) => !prev)}
-          className="text-gray-400 hover:text-white"
-          aria-label="Toggle menu"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            {mobileMenuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
+        
+        <div className="flex items-center gap-4">
+          <ThemeToggle />
+          <button
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            className="text-gray-500 hover:text-[#313131] dark:text-gray-400 dark:hover:text-[#f8f8f8] transition-colors"
+            aria-label="Toggle menu"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {mobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
 
       {mobileMenuOpen && (
-        <div className="lg:hidden mb-8 rounded-2xl border border-gray-800 bg-[#151515] p-6">
-          <div className="border-t border-b border-gray-800 py-4">{renderNavLinks(true)}</div>
-          <div className="mt-6 space-y-2 text-sm text-gray-400">
-            <p>Based in London · Remote first</p>
-            <a href="mailto:hello@louisv.co.uk" className="text-white">
+        <div className="lg:hidden mb-8 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1a1a1a] p-6 shadow-lg transition-colors">
+          <div className="border-t border-b border-gray-200 dark:border-gray-800 py-6">{renderNavLinks(true)}</div>
+          <div className="mt-6 space-y-2">
+            <a href="mailto:hello@louisv.co.uk" className="text-[#313131] dark:text-[#f8f8f8] font-satoshi text-sm hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
               hello@louisv.co.uk
             </a>
           </div>
         </div>
       )}
 
-      <aside className="hidden lg:flex lg:h-[calc(100vh-6rem)] lg:flex-col lg:justify-between lg:sticky lg:top-12">
-        <div className="space-y-8">
-          <div className="space-y-2">
-            <p className="text-xs uppercase tracking-[0.4em] text-gray-600">Louis Valenzuela</p>
-            <p className="text-sm text-gray-500">Product designer & strategic partner</p>
+      <aside className="hidden lg:block lg:w-64 xl:w-72">
+        {/* Logo - Fixed at top */}
+        <div className="fixed top-10 lg:w-64 xl:w-72">
+          <div className="h-[65px] w-[65px] flex items-center justify-center">
+            <Logo className="w-[65px] h-[65px]" />
           </div>
-
-          <nav className="pt-4">
-            <div className="h-px bg-gray-800"></div>
-            <div className="py-6">{renderNavLinks()}</div>
-            <div className="h-px bg-gray-800"></div>
-          </nav>
         </div>
 
-        <div className="space-y-2 text-xs tracking-[0.2em] uppercase text-gray-500">
-          <a href="mailto:hello@louisv.co.uk" className="text-white tracking-[0.25em]">
-            hello@louisv.co.uk
-          </a>
-          <p>London · GMT</p>
+        {/* Navigation - Scrollable middle section */}
+        <nav className="fixed top-32 bottom-32 lg:w-64 xl:w-72 overflow-y-auto scrollbar-hide">
+          {renderNavLinks()}
+        </nav>
+
+        {/* Theme Toggle - Fixed at bottom */}
+        <div className="fixed bottom-10 lg:w-64 xl:w-72">
+          <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-3 inline-flex transition-colors">
+            <ThemeToggle />
+          </div>
         </div>
       </aside>
     </div>
@@ -121,4 +157,3 @@ const Navigation = () => {
 }
 
 export default Navigation
-

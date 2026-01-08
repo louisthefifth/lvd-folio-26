@@ -8,7 +8,7 @@ const Hero = () => {
       text: 'I create purposeful experiences. Good design, in my view, should make life easier and more seamless.'
     },
     designers: {
-      text: "Whether you label your layers or not, we'll create something great together."
+      text: 'Whether you label your layers or not, we will create something great together.'
     },
     recruiters: {
       text: `8+ years experience.
@@ -28,7 +28,7 @@ Previous lives; Content Strategist, Copywriter, Data Planner, Marketer.`
   }
 
   const audiences = [
-    { id: 'everyone', name: 'Everyone' },
+    { id: 'everyone', name: 'For everyone' },
     { id: 'designers', name: 'Designers' },
     { id: 'recruiters', name: 'Recruiters & Founders' },
     { id: 'engineers', name: 'Engineers' },
@@ -36,43 +36,33 @@ Previous lives; Content Strategist, Copywriter, Data Planner, Marketer.`
   ]
 
   return (
-    <section id="intro" className="scroll-mt-24">
-      <div className="space-y-6">
-        <p className="section-label">Intro</p>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight text-white">
-          Hey, I’m Louis — a product designer partnering with founders and product teams to build purposeful experiences.
-        </h1>
-        <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-gray-400">
-          Over the last 8+ years I’ve helped launch and evolve digital products across health, retail, fintech and AI. I work best embedded with ambitious teams that want design to unlock measurable outcomes.
-        </p>
-      </div>
-
-      <div className="mt-12">
-        <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">For</p>
+    <section id="intro" className="scroll-mt-24 lg:pt-[6.5rem]">
+      <div>
         <div className="relative">
-          <div className="flex gap-6 overflow-x-auto pb-4">
+          <div className="flex gap-6 overflow-x-auto pb-4 justify-start">
             {audiences.map((audience) => (
               <button
                 key={audience.id}
                 onClick={() => setActiveAudience(audience.id)}
-                className={`group relative pb-3 text-sm font-medium tracking-wide transition-colors ${
-                  activeAudience === audience.id ? 'text-white' : 'text-gray-500 hover:text-gray-300'
+                className={`group relative pb-3 font-satoshi text-sm font-medium tracking-wide transition-colors text-left whitespace-nowrap ${
+                  activeAudience === audience.id 
+                    ? 'text-[#313131] dark:text-[#f8f8f8]' 
+                    : 'text-gray-500 hover:text-[#313131] dark:text-gray-400 dark:hover:text-gray-200'
                 }`}
               >
                 {audience.name}
                 <span
                   className={`pointer-events-none absolute inset-x-0 -bottom-px h-[2px] transition-colors duration-200 ${
-                    activeAudience === audience.id ? 'bg-[#3da8ff]' : 'bg-transparent group-hover:bg-gray-500'
+                    activeAudience === audience.id ? 'bg-[#046055]' : 'bg-transparent group-hover:bg-gray-400 dark:group-hover:bg-gray-500'
                   }`}
                 ></span>
               </button>
             ))}
           </div>
-          <div className="h-px bg-gray-800" aria-hidden="true"></div>
         </div>
-        <div className="pt-6 text-gray-100 min-h-[170px]">
+        <div className="pt-6 text-[#313131] dark:text-gray-100 h-[250px]">
           {activeAudience === 'antiremote' ? (
-            <p className="text-base sm:text-lg leading-relaxed">
+            <p className="text-2xl sm:text-3xl lg:text-4xl leading-relaxed">
               {audienceContent[activeAudience].text.split(' ').map((word, wordIndex) => (
                 <span key={wordIndex} className="inline-block mr-1">
                   {word.split('').map((char, charIndex) => (
@@ -91,7 +81,7 @@ Previous lives; Content Strategist, Copywriter, Data Planner, Marketer.`
               ))}
             </p>
           ) : (
-            <p className="text-base sm:text-lg leading-relaxed whitespace-pre-line">
+            <p className="text-2xl sm:text-3xl lg:text-4xl leading-relaxed whitespace-pre-line">
               {audienceContent[activeAudience].text}
             </p>
           )}
@@ -102,4 +92,3 @@ Previous lives; Content Strategist, Copywriter, Data Planner, Marketer.`
 }
 
 export default Hero
-

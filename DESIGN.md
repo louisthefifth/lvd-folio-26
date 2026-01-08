@@ -180,3 +180,27 @@ When adding new sections, follow this structure:
 6. Test responsiveness at all breakpoints
 7. Maintain sufficient contrast for accessibility
 
+
+## To fix on the homepage once all content is on the site
+
+## HERO
+- Make the titles (for everyone, designers, Recruiters in the hero tab bigger.
+- Remove the Designers tab, it's not relevant.
+- Increase the lettering space for the text in the Anti-remote work tab.
+
+## GENERAL AESTHETICS
+- Default to light mode
+- Make the icon a lighter grey in light mode
+
+## PROJECTS
+- Make the project title outline darker more legible when on light mode, also make the title clickable
+- Push the project tags down to the base of the card
+- Introduce a short description that sits to the far right of the card
+- 3 tags maximum per project (industry, business type (b2b, b2c etc.), type of work (UX, UI, UX/UI, branding etc.)
+
+## CLIENTS
+- Hyperlink the blocks and show an arrow or change when hovered over (desktop only)
+
+## CONTACT
+- TBD
+

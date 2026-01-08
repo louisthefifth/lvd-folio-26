@@ -13,13 +13,13 @@ const testimonials = [
   },
   {
     quote:
-      "I enjoyed working with Louis and appreciated his focus and drive in developing a re-brand for an ambitious new mobile app. He's a true strategic thinker who really gets the business problems his clients are facing.",
+      'I enjoyed working with Louis and appreciated his focus and drive in developing a re-brand for an ambitious new mobile app. He is a true strategic thinker who really gets the business problems his clients are facing.',
     author: 'Franziska Kirschner',
     role: 'Head of AI & Product, Tractable'
   },
   {
     quote:
-      'Louis is the kind of professional you’d want on any team; he’s dedicated, willing to learn, and very easy to get along with. One of the best designers I had the pleasure to work with.',
+      'Louis is the kind of professional you would want on any team; he is dedicated, willing to learn, and very easy to get along with. One of the best designers I had the pleasure to work with.',
     author: 'Alex Carvalho',
     role: 'Creative Director, Brandwidth'
   },
@@ -42,11 +42,11 @@ const Testimonials = () => {
     <section id="testimonials" className="scroll-mt-24">
       <div className="space-y-5 mb-10">
         <p className="section-label">Testimonials</p>
-        <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-white">
+        <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-[#313131] dark:text-white">
           Partners say nice things.
         </h2>
-        <p className="max-w-2xl text-base sm:text-lg text-gray-400 leading-relaxed">
-          A few words from the people I’ve collaborated with while crafting or scaling products.
+        <p className="max-w-2xl text-base sm:text-lg text-gray-500 dark:text-gray-400 leading-relaxed">
+          A few words from the people I have collaborated with while crafting or scaling products.
         </p>
       </div>
 
@@ -54,13 +54,13 @@ const Testimonials = () => {
         {testimonials.map((testimonial) => (
           <figure
             key={testimonial.author}
-            className="rounded-2xl border border-gray-800 bg-[#161616] p-6 sm:p-8 shadow-[0_0_0_1px_rgba(255,255,255,0.03)]"
+            className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1a1a1a] p-6 sm:p-8 shadow-sm dark:shadow-[0_0_0_1px_rgba(255,255,255,0.03)] transition-colors duration-300"
           >
-            <blockquote className="text-base sm:text-lg text-gray-200 leading-relaxed">
-              “{testimonial.quote}”
+            <blockquote className="text-base sm:text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
+              "{testimonial.quote}"
             </blockquote>
             <figcaption className="mt-6">
-              <p className="text-sm font-semibold text-white">{testimonial.author}</p>
+              <p className="text-sm font-semibold text-[#313131] dark:text-white">{testimonial.author}</p>
               <p className="text-xs uppercase tracking-[0.2em] text-gray-500 mt-1">{testimonial.role}</p>
             </figcaption>
           </figure>
@@ -71,4 +71,3 @@ const Testimonials = () => {
 }
 
 export default Testimonials
-

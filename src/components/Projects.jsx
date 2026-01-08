@@ -1,111 +1,89 @@
-const Projects = () => {
-  // This structure makes it easy to add new projects
-  const projects = [
-    {
-      id: 1,
-      title: 'Carv (GetCarv)',
-      description:
-        'Delivering value and encouragement to skiers, with a focus on off-snow activity.',
-      tech: ['Wearable Tech', 'Skiing', 'Mobile App', 'User Engagement'],
-      link: 'https://louisv.co.uk/carv',
-      icon: '⛷️'
-    },
-    {
-      id: 2,
-      title: 'Prevayl',
-      description:
-        'Leveraging medical-grade tracking analysis and insight for fitness wearable technology.',
-      tech: ['Wearable Tech', 'Fitness', 'Medical-Grade Data', 'Insight Platform'],
-      link: 'https://louisv.co.uk/prevayl',
-      icon: '🏃‍♂️'
-    },
-    {
-      id: 3,
-      title: 'X-Lab (X-Lab Systems)',
-      description:
-        'A portal enabling marginalised users from remote organisations to request lab tests and review results.',
-      tech: ['Healthcare', 'Remote Access', 'Lab Portal', 'Accessibility'],
-      link: 'https://louisv.co.uk/x-lab',
-      icon: '🧪'
-    },
-    {
-      id: 4,
-      title: 'Healthspan',
-      description:
-        'Comprehensive health-tech website audit and review to drive sales.',
-      tech: ['Health-Tech', 'E-commerce', 'UX Audit', 'Conversion Optimisation'],
-      link: 'https://louisv.co.uk/healthspan',
-      icon: '🩺'
-    },
-    {
-      id: 5,
-      title: 'Tesco DDL',
-      description:
-        'Consolidating and correcting years of inconsistency to deliver a cohesive customer experience.',
-      tech: ['Retail', 'Design System', 'Enterprise UX', 'Customer Experience'],
-      link: 'https://louisv.co.uk/tesco-ddl',
-      icon: '🛒'
-    },
-    {
-      id: 6,
-      title: 'WIREWAX',
-      description:
-        'Ushering the renowned cloud-based video editor into a new era of aesthetics and features.',
-      tech: ['Video SaaS', 'Product Design', 'Visual Design', 'Feature Evolution'],
-      link: 'https://louisv.co.uk/wirewax',
-      icon: '🎬'
-    }
-  ]
+import React from "react";
+import { Link } from "react-router-dom";
 
+export default function Projects({ projects }) {
   return (
-    <section id="work" className="scroll-mt-24">
-      <div className="space-y-5 mb-12">
-        <p className="section-label">Work</p>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white leading-tight">
-          Selected collaborations across health, retail, media and emerging tech.
-        </h2>
-        <p className="max-w-2xl text-base sm:text-lg text-gray-400 leading-relaxed">
-          A snapshot of recent product and service design engagements — from shaping brand-new ventures to strengthening existing platforms.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
-        {projects.map((project) => (
-          <article
-            key={project.id}
-            className="group rounded-2xl border border-gray-800 bg-[#1a1a1a] p-6 sm:p-7 transition-all duration-300 hover:border-gray-600"
-          >
-            <div className="flex items-center gap-3 text-sm text-gray-500">
-              <span className="text-2xl">{project.icon ?? '💼'}</span>
-              <span>{project.tech[0]}</span>
+    <section id="work" className="space-y-20 scroll-mt-24">
+      {projects.map((project, index) => (
+        <article
+          key={project.id}
+          className={`group px-4 py-10 sm:px-8 lg:px-12 ${
+            index !== projects.length - 1 ? 'border-b border-gray-200 dark:border-gray-800 pb-20' : ''
+          }`}
+        >
+          <div className="mx-auto flex max-w-6xl flex-col gap-8 md:flex-row md:items-center md:justify-between">
+            {/* LEFT: giant outlined project title */}
+            <div className="flex-1">
+              <h2
+                className="text-6xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-white hover:text-[#313131] dark:text-white dark:hover:text-[#f8f8f8] transition-colors duration-300"
+                style={{
+                  WebkitTextStroke: "1px rgba(156,163,175,0.5)",
+                }}
+              >
+                {project.shortTitle || project.title}
+              </h2>
             </div>
-            <h3 className="mt-6 text-2xl font-semibold text-white">{project.title}</h3>
-            <p className="mt-4 text-gray-400 leading-relaxed">{project.description}</p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {project.tech.map((tech, index) => (
-                <span
-                  key={index}
-                  className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-wide text-gray-300"
+            {/* RIGHT: tags + CTA */}
+            <div className="flex flex-1 flex-col items-start gap-6 md:items-end">
+              {/* Tech tags */}
+              <div className="flex flex-wrap justify-start gap-3 md:justify-end">
+                {project.tech?.map((tech, index) => (
+                  <span
+                    key={index}
+                    className="rounded-full border border-gray-300 bg-gray-100 text-gray-600 dark:border-white/10 dark:bg-white/5 px-4 py-1.5 text-xs tracking-[0.16em] uppercase dark:text-gray-300 transition-colors"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              {/* CTA - uses Link for internal routes, <a> for external */}
+              {project.isInternal ? (
+                <Link
+                  to={project.link}
+                  className="inline-flex items-center rounded-md bg-gray-100 px-5 py-3 text-sm font-medium text-[#313131] transition-all duration-300 hover:bg-gray-200 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
                 >
-                  {tech}
-                </span>
-              ))}
+                  View case study
+                  <svg
+                    className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </Link>
+              ) : (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center rounded-md bg-gray-100 px-5 py-3 text-sm font-medium text-[#313131] transition-all duration-300 hover:bg-gray-200 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+                >
+                  View case study
+                  <svg
+                    className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </a>
+              )}
             </div>
-            <a
-              href={project.link}
-              className="mt-6 inline-flex items-center text-sm font-medium text-white transition-colors hover:text-gray-200"
-            >
-              View case study
-              <svg className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
-          </article>
-        ))}
-      </div>
+          </div>
+        </article>
+      ))}
     </section>
-  )
+  );
 }
-
-export default Projects
-
