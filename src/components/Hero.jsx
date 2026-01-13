@@ -46,21 +46,21 @@ Previous lives; Content Strategist, Copywriter, Data Planner, Marketer.`
                 onClick={() => setActiveAudience(audience.id)}
                 className={`group relative pb-3 font-satoshi text-sm font-medium tracking-wide transition-colors text-left whitespace-nowrap ${
                   activeAudience === audience.id 
-                    ? 'text-[#313131] dark:text-[#f8f8f8]' 
-                    : 'text-gray-500 hover:text-[#313131] dark:text-gray-400 dark:hover:text-gray-200'
+                    ? 'text-[#313131]' 
+                    : 'text-gray-500 hover:text-[#313131]'
                 }`}
               >
                 {audience.name}
                 <span
                   className={`pointer-events-none absolute inset-x-0 -bottom-px h-[2px] transition-colors duration-200 ${
-                    activeAudience === audience.id ? 'bg-[#046055]' : 'bg-transparent group-hover:bg-gray-400 dark:group-hover:bg-gray-500'
+                    activeAudience === audience.id ? 'bg-[#046055]' : 'bg-transparent group-hover:bg-gray-400'
                   }`}
                 ></span>
               </button>
             ))}
           </div>
         </div>
-        <div className="pt-6 text-[#313131] dark:text-gray-100 h-[250px]">
+        <div className="pt-6 text-[#313131] h-[250px]">
           {activeAudience === 'antiremote' ? (
             <p className="text-2xl sm:text-3xl lg:text-4xl leading-relaxed">
               {audienceContent[activeAudience].text.split(' ').map((word, wordIndex) => (

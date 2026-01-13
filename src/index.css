@@ -8,11 +8,6 @@
     --color-text: #313131;
   }
   
-  .dark {
-    --color-bg: #313131;
-    --color-text: #f8f8f8;
-  }
-  
   * {
     margin: 0;
     padding: 0;
@@ -53,17 +48,9 @@
   background: #f8f8f8;
 }
 
-.dark ::-webkit-scrollbar-track {
-  background: #313131;
-}
-
 ::-webkit-scrollbar-thumb {
   background: #9ca3af;
   border-radius: 6px;
-}
-
-.dark ::-webkit-scrollbar-thumb {
-  background: #4b5563;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -99,8 +86,4 @@
   letter-spacing: 0.24em;
   color: #6b7280;
   line-height: 1.4;
-}
-
-.dark .section-label {
-  color: #9ca3af;
 }

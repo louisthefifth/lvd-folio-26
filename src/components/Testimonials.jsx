@@ -42,10 +42,10 @@ const Testimonials = () => {
     <section id="testimonials" className="scroll-mt-24">
       <div className="space-y-5 mb-10">
         <p className="section-label">Testimonials</p>
-        <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-[#313131] dark:text-white">
+        <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-[#313131]">
           Partners say nice things.
         </h2>
-        <p className="max-w-2xl text-base sm:text-lg text-gray-500 dark:text-gray-400 leading-relaxed">
+        <p className="max-w-2xl text-base sm:text-lg text-gray-500 leading-relaxed">
           A few words from the people I have collaborated with while crafting or scaling products.
         </p>
       </div>
@@ -54,13 +54,13 @@ const Testimonials = () => {
         {testimonials.map((testimonial) => (
           <figure
             key={testimonial.author}
-            className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1a1a1a] p-6 sm:p-8 shadow-sm dark:shadow-[0_0_0_1px_rgba(255,255,255,0.03)] transition-colors duration-300"
+            className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 shadow-sm transition-colors duration-300"
           >
-            <blockquote className="text-base sm:text-lg text-gray-700 dark:text-gray-200 leading-relaxed">
+            <blockquote className="text-base sm:text-lg text-gray-700 leading-relaxed">
               "{testimonial.quote}"
             </blockquote>
             <figcaption className="mt-6">
-              <p className="text-sm font-semibold text-[#313131] dark:text-white">{testimonial.author}</p>
+              <p className="text-sm font-semibold text-[#313131]">{testimonial.author}</p>
               <p className="text-xs uppercase tracking-[0.2em] text-gray-500 mt-1">{testimonial.role}</p>
             </figcaption>
           </figure>

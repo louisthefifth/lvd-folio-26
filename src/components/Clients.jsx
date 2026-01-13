@@ -23,7 +23,7 @@ const Clients = () => {
         {clients.map((client) => (
           <div
             key={client}
-            className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1a1a1a] px-5 py-6 text-sm font-medium uppercase tracking-[0.2em] text-gray-600 dark:text-gray-200 transition-colors duration-300"
+            className="rounded-xl border border-gray-200 bg-white px-5 py-6 text-sm font-medium uppercase tracking-[0.2em] text-gray-600 transition-colors duration-300"
           >
             {client}
           </div>

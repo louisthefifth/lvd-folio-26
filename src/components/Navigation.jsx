@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from 'react'
-import ThemeToggle from './ThemeToggle'
 import Logo from './Logo'
 
 const navItems = [
@@ -84,8 +83,8 @@ const Navigation = () => {
             onClick={(e) => handleNavClick(e, item.id)}
             className={`group font-satoshi text-lg transition-all cursor-pointer ${
               activeSection === item.id 
-                ? 'text-[#313131] dark:text-[#f8f8f8] font-bold' 
-                : 'text-gray-500 hover:text-[#313131] dark:text-gray-400 dark:hover:text-[#f8f8f8] font-normal'
+                ? 'text-[#313131] font-bold' 
+                : 'text-gray-500 hover:text-[#313131] font-normal'
             }`}
           >
             <span className="whitespace-nowrap">{item.label}</span>
@@ -104,10 +103,9 @@ const Navigation = () => {
         </div>
         
         <div className="flex items-center gap-4">
-          <ThemeToggle />
           <button
             onClick={() => setMobileMenuOpen((prev) => !prev)}
-            className="text-gray-500 hover:text-[#313131] dark:text-gray-400 dark:hover:text-[#f8f8f8] transition-colors"
+            className="text-gray-500 hover:text-[#313131] transition-colors"
             aria-label="Toggle menu"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -122,10 +120,10 @@ const Navigation = () => {
       </div>
 
       {mobileMenuOpen && (
-        <div className="lg:hidden mb-8 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1a1a1a] p-6 shadow-lg transition-colors">
-          <div className="border-t border-b border-gray-200 dark:border-gray-800 py-6">{renderNavLinks(true)}</div>
+        <div className="lg:hidden mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-lg transition-colors">
+          <div className="border-t border-b border-gray-200 py-6">{renderNavLinks(true)}</div>
           <div className="mt-6 space-y-2">
-            <a href="mailto:hello@louisv.co.uk" className="text-[#313131] dark:text-[#f8f8f8] font-satoshi text-sm hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+            <a href="mailto:hello@louisv.co.uk" className="text-[#313131] font-satoshi text-sm hover:text-gray-600 transition-colors">
               hello@louisv.co.uk
             </a>
           </div>
@@ -145,12 +143,6 @@ const Navigation = () => {
           {renderNavLinks()}
         </nav>
 
-        {/* Theme Toggle - Fixed at bottom */}
-        <div className="fixed bottom-10 lg:w-64 xl:w-72">
-          <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-3 inline-flex transition-colors">
-            <ThemeToggle />
-          </div>
-        </div>
       </aside>
     </div>
   )
