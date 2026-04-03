@@ -11,75 +11,47 @@ export default function Projects({ projects }) {
             index !== projects.length - 1 ? 'border-b border-gray-200 pb-20' : ''
           }`}
         >
-          <div className="mx-auto flex max-w-6xl flex-col gap-8 md:flex-row md:items-center md:justify-between">
-            {/* LEFT: giant outlined project title */}
+          <div className="mx-auto flex max-w-6xl flex-col gap-6 md:flex-row md:items-start md:justify-between">
+            {/* LEFT: giant outlined project title as a link */}
             <div className="flex-1">
-              <h2
-                className="text-6xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-white hover:text-[#313131] transition-colors duration-300"
-                style={{
-                  WebkitTextStroke: "1px rgba(156,163,175,0.5)",
-                }}
-              >
-                {project.shortTitle || project.title}
-              </h2>
+              {project.isInternal ? (
+                <Link to={project.link} className="block">
+                  <h2
+                    className="text-6xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-transparent transition-colors duration-300 hover:text-[#313131]"
+                    style={{ WebkitTextStroke: '1px rgba(49,49,49,0.25)' }}
+                  >
+                    {project.shortTitle || project.title}
+                  </h2>
+                </Link>
+              ) : (
+                <a href={project.link} target="_blank" rel="noopener noreferrer" className="block">
+                  <h2
+                    className="text-6xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-transparent transition-colors duration-300 hover:text-[#313131]"
+                    style={{ WebkitTextStroke: '1px rgba(49,49,49,0.25)' }}
+                  >
+                    {project.shortTitle || project.title}
+                  </h2>
+                </a>
+              )}
             </div>
-            {/* RIGHT: tags + CTA */}
-            <div className="flex flex-1 flex-col items-start gap-6 md:items-end">
-              {/* Tech tags */}
-              <div className="flex flex-wrap justify-start gap-3 md:justify-end">
-                {project.tech?.map((tech, index) => (
+
+            {/* RIGHT: description + tags */}
+            <div className="flex flex-1 flex-col justify-between gap-8 md:items-end min-h-[120px]">
+              {project.description && (
+                <p className="text-base text-gray-500 leading-relaxed md:text-right max-w-sm">
+                  {project.description}
+                </p>
+              )}
+              <div className="flex flex-wrap justify-start gap-3 md:justify-end mt-auto">
+                {project.tech?.slice(0, 3).map((tech, i) => (
                   <span
-                    key={index}
-                    className="rounded-full border border-gray-300 bg-gray-100 text-gray-600 px-4 py-1.5 text-xs tracking-[0.16em] uppercase transition-colors"
+                    key={i}
+                    className="rounded-full border border-gray-300 bg-gray-100 text-gray-600 px-4 py-1.5 text-xs tracking-[0.16em] uppercase"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
-              {/* CTA - uses Link for internal routes, <a> for external */}
-              {project.isInternal ? (
-                <Link
-                  to={project.link}
-                  className="inline-flex items-center rounded-md bg-gray-100 px-5 py-3 text-sm font-medium text-[#313131] transition-all duration-300 hover:bg-gray-200"
-                >
-                  View case study
-                  <svg
-                    className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </Link>
-              ) : (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-md bg-gray-100 px-5 py-3 text-sm font-medium text-[#313131] transition-all duration-300 hover:bg-gray-200"
-                >
-                  View case study
-                  <svg
-                    className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </a>
-              )}
             </div>
           </div>
         </article>

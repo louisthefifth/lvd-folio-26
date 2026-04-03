@@ -4,96 +4,64 @@ import Hero from './components/Hero'
 import Projects from './components/Projects'
 import Clients from './components/Clients'
 import Testimonials from './components/Testimonials'
+import Writing from './components/Writing'
 import Footer from './components/Footer'
 
-// Case study pages - add new imports here as you create them
+// Case study pages
 import Carv from './pages/projects/Carv'
+import Prevayl from './pages/projects/Prevayl'
+import XLab from './pages/projects/XLab'
+import Healthspan from './pages/projects/Healthspan'
+import Tesco from './pages/projects/Tesco'
 
-/**
- * Project data - edit this to add/modify projects on the homepage
- * 
- * Each project needs:
- * - id: Unique number
- * - title: Full project name
- * - shortTitle: Short name for cards
- * - description: Brief description for homepage
- * - tech: Array of tags
- * - link: Internal route (e.g., '/projects/carv') or external URL
- * - icon: Emoji icon
- * - isInternal: Set to true for case studies hosted on this site
- */
 const projects = [
   {
     id: 1,
     title: 'Carv (GetCarv)',
     shortTitle: 'Carv',
-    description:
-      'Delivering value and encouragement to skiers, with a focus on off-snow activity.',
-    tech: ['Wearable Tech', 'Skiing', 'Mobile App', 'User Engagement'],
+    description: 'Coaching skiers with live audio feedback and off-snow engagement strategies.',
+    tech: ['Wearable Tech', 'B2C', 'UX/UI Design'],
     link: '/projects/carv',
-    icon: '⛷️',
     isInternal: true
   },
   {
     id: 2,
     title: 'Prevayl',
     shortTitle: 'Prevayl',
-    description:
-      'Leveraging medical-grade tracking analysis and insight for fitness wearable technology.',
-    tech: ['Wearable Tech', 'Fitness', 'Medical-Grade Data', 'Insight Platform'],
-    link: 'https://louisv.co.uk/prevayl',
-    icon: '🏃‍♂️',
-    isInternal: false
+    description: 'Turning medical-grade biometric data into meaningful, actionable insight.',
+    tech: ['Health Tech', 'B2C', 'UX/UI Design'],
+    link: '/projects/prevayl',
+    isInternal: true
   },
   {
     id: 3,
-    title: 'X-Lab (X-Lab Systems)',
+    title: 'X-Lab Systems',
     shortTitle: 'X-Lab',
-    description:
-      'A portal enabling marginalised users from remote organisations to request lab tests and review results.',
-    tech: ['Healthcare', 'Remote Access', 'Lab Portal', 'Accessibility'],
-    link: 'https://louisv.co.uk/x-lab',
-    icon: '🧪',
-    isInternal: false
+    description: 'Designing a lab test portal from scratch for occupational health practitioners.',
+    tech: ['Health Tech', 'B2B', 'UX/UI Design'],
+    link: '/projects/x-lab',
+    isInternal: true
   },
   {
     id: 4,
     title: 'Healthspan',
     shortTitle: 'Healthspan',
-    description:
-      'Comprehensive health-tech website audit and review to drive sales.',
-    tech: ['Health-Tech', 'E-commerce', 'UX Audit', 'Conversion Optimisation'],
-    link: 'https://louisv.co.uk/healthspan',
-    icon: '🩺',
-    isInternal: false
+    description: 'A UX audit and content strategy that turned browsers into repeat customers.',
+    tech: ['E-commerce', 'B2C', 'UX Strategy'],
+    link: '/projects/healthspan',
+    isInternal: true
   },
   {
     id: 5,
-    title: 'Tesco DDL',
-    shortTitle: 'Tesco DDL',
-    description:
-      'Consolidating and correcting years of inconsistency to deliver a cohesive customer experience.',
-    tech: ['Retail', 'Design System', 'Enterprise UX', 'Customer Experience'],
-    link: 'https://louisv.co.uk/tesco-ddl',
-    icon: '🛒',
-    isInternal: false
+    title: 'Tesco',
+    shortTitle: 'Tesco',
+    description: 'Consolidating years of design inconsistency into one cohesive system.',
+    tech: ['Retail', 'B2C', 'Design Systems'],
+    link: '/projects/tesco',
+    isInternal: true
   },
-  {
-    id: 6,
-    title: 'WIREWAX',
-    shortTitle: 'WIREWAX',
-    description:
-      'Ushering the renowned cloud-based video editor into a new era of aesthetics and features.',
-    tech: ['Video SaaS', 'Product Design', 'Visual Design', 'Feature Evolution'],
-    link: 'https://louisv.co.uk/wirewax',
-    icon: '🎬',
-    isInternal: false
-  }
 ]
 
-/**
- * Homepage component - the main landing page
- */
 function Homepage() {
   return (
     <div className="min-h-screen transition-colors duration-300">
@@ -105,6 +73,7 @@ function Homepage() {
             <Projects projects={projects} />
             <Clients />
             <Testimonials />
+            <Writing />
             <Footer />
           </main>
         </div>
@@ -113,29 +82,16 @@ function Homepage() {
   )
 }
 
-/**
- * Main App with routing
- * 
- * To add a new case study:
- * 1. Create a new file in /src/pages/projects/ (copy Carv.jsx as a template)
- * 2. Import it at the top of this file
- * 3. Add a new Route below
- * 4. Update the project in the projects array above (set isInternal: true, update link)
- */
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Homepage */}
         <Route path="/" element={<Homepage />} />
-        
-        {/* Case study pages - add new routes here */}
         <Route path="/projects/carv" element={<Carv />} />
-        
-        {/* 
-          Template for adding new case studies:
-          <Route path="/projects/project-name" element={<ProjectName />} />
-        */}
+        <Route path="/projects/prevayl" element={<Prevayl />} />
+        <Route path="/projects/x-lab" element={<XLab />} />
+        <Route path="/projects/healthspan" element={<Healthspan />} />
+        <Route path="/projects/tesco" element={<Tesco />} />
       </Routes>
     </BrowserRouter>
   )

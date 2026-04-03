@@ -7,9 +7,6 @@ const Hero = () => {
     everyone: {
       text: 'I create purposeful experiences. Good design, in my view, should make life easier and more seamless.'
     },
-    designers: {
-      text: 'Whether you label your layers or not, we will create something great together.'
-    },
     recruiters: {
       text: `8+ years experience.
 
@@ -29,7 +26,6 @@ Previous lives; Content Strategist, Copywriter, Data Planner, Marketer.`
 
   const audiences = [
     { id: 'everyone', name: 'For everyone' },
-    { id: 'designers', name: 'Designers' },
     { id: 'recruiters', name: 'Recruiters & Founders' },
     { id: 'engineers', name: 'Engineers' },
     { id: 'antiremote', name: 'Anti-remote work' }
@@ -45,8 +41,8 @@ Previous lives; Content Strategist, Copywriter, Data Planner, Marketer.`
                 key={audience.id}
                 onClick={() => setActiveAudience(audience.id)}
                 className={`group relative pb-3 font-satoshi text-sm font-medium tracking-wide transition-colors text-left whitespace-nowrap ${
-                  activeAudience === audience.id 
-                    ? 'text-[#313131]' 
+                  activeAudience === audience.id
+                    ? 'text-[#313131]'
                     : 'text-gray-500 hover:text-[#313131]'
                 }`}
               >
@@ -60,9 +56,9 @@ Previous lives; Content Strategist, Copywriter, Data Planner, Marketer.`
             ))}
           </div>
         </div>
-        <div className="pt-6 text-[#313131] h-[250px]">
+        <div className="pt-6 text-[#313131] h-[280px]">
           {activeAudience === 'antiremote' ? (
-            <p className="text-2xl sm:text-3xl lg:text-4xl leading-relaxed">
+            <p className="text-3xl sm:text-4xl lg:text-5xl leading-relaxed tracking-widest">
               {audienceContent[activeAudience].text.split(' ').map((word, wordIndex) => (
                 <span key={wordIndex} className="inline-block mr-1">
                   {word.split('').map((char, charIndex) => (
@@ -81,7 +77,7 @@ Previous lives; Content Strategist, Copywriter, Data Planner, Marketer.`
               ))}
             </p>
           ) : (
-            <p className="text-2xl sm:text-3xl lg:text-4xl leading-relaxed whitespace-pre-line">
+            <p className="text-3xl sm:text-4xl lg:text-5xl leading-relaxed whitespace-pre-line">
               {audienceContent[activeAudience].text}
             </p>
           )}
