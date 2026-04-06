@@ -13,6 +13,7 @@ import Prevayl from './pages/projects/Prevayl'
 import XLab from './pages/projects/XLab'
 import Healthspan from './pages/projects/Healthspan'
 import Tesco from './pages/projects/Tesco'
+import TestPartnership from './pages/projects/TestPartnership'
 
 const projects = [
   {
@@ -60,6 +61,15 @@ const projects = [
     link: '/projects/tesco',
     isInternal: true
   },
+  {
+    id: 6,
+    title: 'Test Partnership',
+    shortTitle: 'Test Partnership',
+    description: 'Reskinning six game-based assessments with a professional, accessible UI.',
+    tech: ['Enterprise', 'B2B', 'UI/UX Design'],
+    link: '/projects/test-partnership',
+    isInternal: true
+  },
 ]
 
 function Homepage() {
@@ -92,6 +102,7 @@ function App() {
         <Route path="/projects/x-lab" element={<XLab />} />
         <Route path="/projects/healthspan" element={<Healthspan />} />
         <Route path="/projects/tesco" element={<Tesco />} />
+        <Route path="/projects/test-partnership" element={<TestPartnership />} />
       </Routes>
     </BrowserRouter>
   )
