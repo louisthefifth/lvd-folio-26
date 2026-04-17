@@ -9,7 +9,7 @@ function ScrambledTitle({ children }) {
 
   useEffect(() => {
     let frame = 0
-    const duration = 16
+    const duration = 32
     const text = children
 
     const animate = () => {
