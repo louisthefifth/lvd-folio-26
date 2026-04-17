@@ -60,7 +60,7 @@ export default function Projects({ projects }) {
                 <Link to={project.link} className="block">
                   <h2
                     className="text-6xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-transparent transition-colors duration-300 hover:text-[#141413]"
-                    style={{ WebkitTextStroke: '1px rgba(20,20,19,0.25)', fontFamily: "'Instrument Serif', serif" }}
+                    style={{ WebkitTextStroke: '1px rgba(20,20,19,0.25)' }}
                   >
                     <ScrambledTitle>{project.shortTitle || project.title}</ScrambledTitle>
                   </h2>
@@ -69,7 +69,7 @@ export default function Projects({ projects }) {
                 <a href={project.link} target="_blank" rel="noopener noreferrer" className="block">
                   <h2
                     className="text-6xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-transparent transition-colors duration-300 hover:text-[#141413]"
-                    style={{ WebkitTextStroke: '1px rgba(20,20,19,0.25)', fontFamily: "'Instrument Serif', serif" }}
+                    style={{ WebkitTextStroke: '1px rgba(20,20,19,0.25)' }}
                   >
                     <ScrambledTitle>{project.shortTitle || project.title}</ScrambledTitle>
                   </h2>
