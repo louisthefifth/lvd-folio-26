@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="flex items-center gap-6">
             <a
               href="mailto:hello@louisv.co.uk"
-              className="hover:text-[#313131] transition-colors"
+              className="hover:text-[#141413] transition-colors"
             >
               hello@louisv.co.uk
             </a>
@@ -17,7 +17,7 @@ const Footer = () => {
               href="https://www.linkedin.com/in/louisvalenzuela/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#313131] transition-colors"
+              className="hover:text-[#141413] transition-colors"
             >
               LinkedIn →
             </a>

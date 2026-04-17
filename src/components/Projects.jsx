@@ -1,5 +1,47 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+
+const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&'
+
+function ScrambledTitle({ children }) {
+  const [display, setDisplay] = useState(children)
+  const frameRef = useRef()
+
+  useEffect(() => {
+    let frame = 0
+    const duration = 16
+    const text = children
+
+    const animate = () => {
+      if (frame >= duration) {
+        setDisplay(text)
+        return
+      }
+
+      const scrambled = text.split('').map((char, i) => {
+        if (char === ' ') return ' '
+        if (frame > (i / text.length) * duration) return char
+        return CHARS[Math.floor(Math.random() * CHARS.length)]
+      }).join('')
+
+      setDisplay(scrambled)
+      frame++
+      frameRef.current = requestAnimationFrame(animate)
+    }
+
+    // Stagger each title slightly for a cascading reveal
+    const delay = setTimeout(() => {
+      frameRef.current = requestAnimationFrame(animate)
+    }, 100)
+
+    return () => {
+      clearTimeout(delay)
+      if (frameRef.current) cancelAnimationFrame(frameRef.current)
+    }
+  }, [children])
+
+  return <>{display}</>
+}
 
 export default function Projects({ projects }) {
   return (
@@ -17,19 +59,19 @@ export default function Projects({ projects }) {
               {project.isInternal ? (
                 <Link to={project.link} className="block">
                   <h2
-                    className="text-6xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-transparent transition-colors duration-300 hover:text-[#313131]"
-                    style={{ WebkitTextStroke: '1px rgba(49,49,49,0.25)' }}
+                    className="text-6xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-transparent transition-colors duration-300 hover:text-[#141413]"
+                    style={{ WebkitTextStroke: '1px rgba(20,20,19,0.25)', fontFamily: "'Instrument Serif', serif" }}
                   >
-                    {project.shortTitle || project.title}
+                    <ScrambledTitle>{project.shortTitle || project.title}</ScrambledTitle>
                   </h2>
                 </Link>
               ) : (
                 <a href={project.link} target="_blank" rel="noopener noreferrer" className="block">
                   <h2
-                    className="text-6xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-transparent transition-colors duration-300 hover:text-[#313131]"
-                    style={{ WebkitTextStroke: '1px rgba(49,49,49,0.25)' }}
+                    className="text-6xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-transparent transition-colors duration-300 hover:text-[#141413]"
+                    style={{ WebkitTextStroke: '1px rgba(20,20,19,0.25)', fontFamily: "'Instrument Serif', serif" }}
                   >
-                    {project.shortTitle || project.title}
+                    <ScrambledTitle>{project.shortTitle || project.title}</ScrambledTitle>
                   </h2>
                 </a>
               )}

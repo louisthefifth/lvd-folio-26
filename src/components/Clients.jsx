@@ -37,7 +37,7 @@ const Clients = () => {
                 href={client.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center rounded-xl border border-gray-200 bg-white px-5 py-6 text-sm font-medium uppercase tracking-[0.2em] text-gray-600 transition-all duration-300 hover:border-gray-300 hover:text-[#313131]"
+                className="group flex items-center rounded-xl border border-gray-200 bg-white px-5 py-6 text-sm font-medium uppercase tracking-[0.2em] text-gray-600 transition-all duration-300 hover:border-gray-300 hover:text-[#141413]"
               >
                 {inner}
               </a>

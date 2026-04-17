@@ -42,7 +42,7 @@ const Testimonials = () => {
     <section id="testimonials" className="scroll-mt-24">
       <div className="space-y-5 mb-10">
         <p className="section-label">Testimonials</p>
-        <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-[#313131]">
+        <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-[#141413]">
           Partners say nice things.
         </h2>
         <p className="max-w-2xl text-base sm:text-lg text-gray-500 leading-relaxed">
@@ -60,7 +60,7 @@ const Testimonials = () => {
               "{testimonial.quote}"
             </blockquote>
             <figcaption className="mt-6">
-              <p className="text-sm font-semibold text-[#313131]">{testimonial.author}</p>
+              <p className="text-sm font-semibold text-[#141413]">{testimonial.author}</p>
               <p className="text-xs uppercase tracking-[0.2em] text-gray-500 mt-1">{testimonial.role}</p>
             </figcaption>
           </figure>

@@ -42,8 +42,8 @@ Previous lives; Content Strategist, Copywriter, Data Planner, Marketer.`
                 onClick={() => setActiveAudience(audience.id)}
                 className={`group relative pb-3 font-satoshi text-sm font-medium tracking-wide transition-colors text-left whitespace-nowrap ${
                   activeAudience === audience.id
-                    ? 'text-[#313131]'
-                    : 'text-gray-500 hover:text-[#313131]'
+                    ? 'text-[#141413]'
+                    : 'text-gray-500 hover:text-[#141413]'
                 }`}
               >
                 {audience.name}
@@ -56,7 +56,7 @@ Previous lives; Content Strategist, Copywriter, Data Planner, Marketer.`
             ))}
           </div>
         </div>
-        <div className="pt-6 text-[#313131] h-[280px]">
+        <div className="pt-6 text-[#141413] h-[280px]">
           {activeAudience === 'antiremote' ? (
             <p className="text-3xl sm:text-4xl lg:text-5xl leading-relaxed tracking-widest">
               {audienceContent[activeAudience].text.split(' ').map((word, wordIndex) => (

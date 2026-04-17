@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --color-bg: #f8f8f8;
-    --color-text: #313131;
+    --color-bg: #FAFAF8;
+    --color-text: #141413;
   }
   
   * {
@@ -45,7 +45,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f8f8f8;
+  background: #FAFAF8;
 }
 
 ::-webkit-scrollbar-thumb {

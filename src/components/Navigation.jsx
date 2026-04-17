@@ -84,8 +84,8 @@ const Navigation = () => {
             onClick={(e) => handleNavClick(e, item.id)}
             className={`group font-satoshi text-lg transition-all cursor-pointer ${
               activeSection === item.id 
-                ? 'text-[#313131] font-bold' 
-                : 'text-gray-500 hover:text-[#313131] font-normal'
+                ? 'text-[#141413] font-bold' 
+                : 'text-gray-500 hover:text-[#141413] font-normal'
             }`}
           >
             <span className="whitespace-nowrap">{item.label}</span>
@@ -106,7 +106,7 @@ const Navigation = () => {
         <div className="flex items-center gap-4">
           <button
             onClick={() => setMobileMenuOpen((prev) => !prev)}
-            className="text-gray-500 hover:text-[#313131] transition-colors"
+            className="text-gray-500 hover:text-[#141413] transition-colors"
             aria-label="Toggle menu"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -124,7 +124,7 @@ const Navigation = () => {
         <div className="lg:hidden mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-lg transition-colors">
           <div className="border-t border-b border-gray-200 py-6">{renderNavLinks(true)}</div>
           <div className="mt-6 space-y-2">
-            <a href="mailto:hello@louisv.co.uk" className="text-[#313131] font-satoshi text-sm hover:text-gray-600 transition-colors">
+            <a href="mailto:hello@louisv.co.uk" className="text-[#141413] font-satoshi text-sm hover:text-gray-600 transition-colors">
               hello@louisv.co.uk
             </a>
           </div>

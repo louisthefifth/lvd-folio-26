@@ -12,7 +12,7 @@ const Writing = () => {
     <section id="writing" className="scroll-mt-24">
       <div className="space-y-5 mb-10">
         <p className="section-label">Writing</p>
-        <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-[#313131]">
+        <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-[#141413]">
           Thinking out loud.
         </h2>
         <p className="max-w-2xl text-base sm:text-lg text-gray-500 leading-relaxed">
@@ -30,7 +30,7 @@ const Writing = () => {
             className="group rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 shadow-sm transition-all duration-300 hover:border-gray-300 hover:shadow-md"
           >
             <p className="text-xs uppercase tracking-[0.2em] text-gray-400 mb-4">{post.date}</p>
-            <h3 className="text-base sm:text-lg font-semibold text-[#313131] leading-snug mb-2 group-hover:text-[#046055] transition-colors">
+            <h3 className="text-base sm:text-lg font-semibold text-[#141413] leading-snug mb-2 group-hover:text-[#046055] transition-colors">
               {post.title}
             </h3>
             <p className="text-sm text-gray-500 leading-relaxed">{post.description}</p>
@@ -45,7 +45,7 @@ const Writing = () => {
         href="https://lvdesigns.substack.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center text-sm font-medium text-[#313131] hover:text-[#046055] transition-colors"
+        className="inline-flex items-center text-sm font-medium text-[#141413] hover:text-[#046055] transition-colors"
       >
         All writing on Substack →
       </a>
