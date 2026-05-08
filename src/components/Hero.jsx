@@ -16,9 +16,6 @@ const Hero = () => {
 
 Previous lives; Content Strategist, Copywriter, Data Planner, Marketer.`
     },
-    engineers: {
-      text: 'I know my way around a codebase && frameworks && design-to-dev nuances.'
-    },
     antiremote: {
       text: 'Sorry, I am not the designer for you, but I am sure you have a great office.'
     }
@@ -27,7 +24,6 @@ Previous lives; Content Strategist, Copywriter, Data Planner, Marketer.`
   const audiences = [
     { id: 'everyone', name: 'For everyone' },
     { id: 'recruiters', name: 'Recruiters & Founders' },
-    { id: 'engineers', name: 'Engineers' },
     { id: 'antiremote', name: 'Anti-remote work' }
   ]
 
@@ -40,7 +36,7 @@ Previous lives; Content Strategist, Copywriter, Data Planner, Marketer.`
               <button
                 key={audience.id}
                 onClick={() => setActiveAudience(audience.id)}
-                className={`group relative pb-3 font-satoshi text-sm font-medium tracking-wide transition-colors text-left whitespace-nowrap ${
+                className={`group relative pb-3 font-satoshi text-base font-medium tracking-wide transition-colors text-left whitespace-nowrap ${
                   activeAudience === audience.id
                     ? 'text-[#141413]'
                     : 'text-gray-500 hover:text-[#141413]'
@@ -58,7 +54,7 @@ Previous lives; Content Strategist, Copywriter, Data Planner, Marketer.`
         </div>
         <div className="pt-6 text-[#141413] h-[280px]">
           {activeAudience === 'antiremote' ? (
-            <p className="text-3xl sm:text-4xl lg:text-5xl leading-relaxed tracking-widest">
+            <p className="text-3xl sm:text-4xl lg:text-5xl leading-relaxed" style={{ letterSpacing: '0.25em' }}>
               {audienceContent[activeAudience].text.split(' ').map((word, wordIndex) => (
                 <span key={wordIndex} className="inline-block mr-1">
                   {word.split('').map((char, charIndex) => (

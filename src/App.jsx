@@ -21,7 +21,7 @@ const projects = [
     title: 'Carv (GetCarv)',
     shortTitle: 'Carv',
     description: 'Coaching skiers with live audio feedback and off-snow engagement strategies.',
-    tech: ['Wearable Tech', 'B2C', 'UX/UI Design'],
+    tags: { industry: 'Wearable Tech', businessModel: 'B2C', discipline: 'UX/UI' },
     link: '/projects/carv',
     isInternal: true
   },
@@ -30,7 +30,7 @@ const projects = [
     title: 'Prevayl',
     shortTitle: 'Prevayl',
     description: 'Turning medical-grade biometric data into meaningful, actionable insight.',
-    tech: ['Health Tech', 'B2C', 'UX/UI Design'],
+    tags: { industry: 'Health Tech', businessModel: 'B2C', discipline: 'UX/UI' },
     link: '/projects/prevayl',
     isInternal: true
   },
@@ -39,7 +39,7 @@ const projects = [
     title: 'X-Lab Systems',
     shortTitle: 'X-Lab',
     description: 'Designing a lab test portal from scratch for occupational health practitioners.',
-    tech: ['Health Tech', 'B2B', 'UX/UI Design'],
+    tags: { industry: 'Health Tech', businessModel: 'B2B', discipline: 'UX/UI' },
     link: '/projects/x-lab',
     isInternal: true
   },
@@ -48,7 +48,7 @@ const projects = [
     title: 'Healthspan',
     shortTitle: 'Healthspan',
     description: 'A UX audit and content strategy that turned browsers into repeat customers.',
-    tech: ['E-commerce', 'B2C', 'UX Strategy'],
+    tags: { industry: 'E-commerce', businessModel: 'B2C', discipline: 'UX Strategy' },
     link: '/projects/healthspan',
     isInternal: true
   },
@@ -57,7 +57,7 @@ const projects = [
     title: 'Tesco',
     shortTitle: 'Tesco',
     description: 'Consolidating years of design inconsistency into one cohesive system.',
-    tech: ['Retail', 'B2C', 'Design Systems'],
+    tags: { industry: 'Retail', businessModel: 'B2C', discipline: 'Design Systems' },
     link: '/projects/tesco',
     isInternal: true
   },
@@ -66,7 +66,7 @@ const projects = [
     title: 'Test Partnership',
     shortTitle: 'Test Partnership',
     description: 'Reskinning six game-based assessments with a professional, accessible UI.',
-    tech: ['Enterprise', 'B2B', 'UI/UX Design'],
+    tags: { industry: 'Enterprise', businessModel: 'B2B', discipline: 'UI/UX' },
     link: '/projects/test-partnership',
     isInternal: true
   },

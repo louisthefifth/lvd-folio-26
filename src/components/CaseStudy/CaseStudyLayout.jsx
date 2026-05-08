@@ -7,7 +7,7 @@ import { motion, useScroll } from 'framer-motion'
  * Section types available:
  * - 'text': { type: 'text', title: 'Title', content: 'Text...' or ['Para 1', 'Para 2'] }
  * - 'image': { type: 'image', src: '/images/...', alt: '...', caption: '...' }
- * - 'image-grid': { type: 'image-grid', columns: 2|3, images: [{src, alt}] }
+ * - 'image-grid': { type: 'image-grid', title: '...', content: '...', columns: 2|3, images: [{src, alt}] }
  * - 'video': { type: 'video', src: '/videos/...', caption: '...' }
  * - 'quote': { type: 'quote', text: '...', author: '...' }
  * - 'list': { type: 'list', title: '...', items: ['...'] }
@@ -84,7 +84,7 @@ export default function CaseStudyLayout({ project }) {
         {project.heroImages && project.heroImages.length > 0 && (
           <div className={`mb-12 ${project.heroImagesFullWidth ? '-mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8' : ''}`}
             style={project.heroImagesFullWidth ? { width: 'calc(100% + 2rem)', maxWidth: '100vw' } : {}}>
-            <div className={`grid gap-4 ${project.heroImages.length === 3 ? 'grid-cols-1 sm:grid-cols-3' :
+            <div className={`grid gap-4 image-grid-mobile ${project.heroImages.length === 3 ? 'grid-cols-1 sm:grid-cols-3' :
                 project.heroImages.length === 2 ? 'grid-cols-1 sm:grid-cols-2' :
                   'grid-cols-1'
               } ${project.heroImagesFullWidth ? 'max-w-7xl mx-auto' : ''}`}>
@@ -94,7 +94,7 @@ export default function CaseStudyLayout({ project }) {
                   src={img.src}
                   alt={img.alt}
                   loading="lazy"
-                  className="w-full border border-gray-300 rounded"
+                  className="w-full max-w-full border border-gray-300 rounded"
                   style={{ borderWidth: '0.5px', margin: '0 auto', ...img.style }}
                 />
               ))}
@@ -253,12 +253,12 @@ function Section({ section }) {
 
     case 'image':
       return (
-        <figure className={section.fullWidth ? "w-full" : "max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"}>
+        <figure className={section.fullWidth ? "w-full flex justify-center" : "max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"}>
           <img
             src={section.src}
             alt={section.alt}
             loading="lazy"
-            className={`w-full ${section.noBorder ? '' : 'border border-gray-300 rounded'}`}
+            className={`w-full h-auto ${section.noBorder ? '' : 'border border-gray-300 rounded'}`}
             style={{
               ...(section.noBorder ? {} : { borderWidth: '0.5px' }),
               ...section.style
@@ -297,68 +297,86 @@ function Section({ section }) {
 
       const rowGapValue = getGapValue(section.rowGap !== undefined ? section.rowGap : section.gap)
       const columnGapValue = getGapValue(section.columnGap !== undefined ? section.columnGap : section.gap)
-      console.log('Image Grid - Row gap:', section.rowGap || section.gap, '→', rowGapValue, '| Column gap:', section.columnGap || section.gap, '→', columnGapValue)
 
-      // For tight grids with constrained images, use max-content columns
-      const useFitContent = section.gap <= -5
-      const gridTemplateColumns = useFitContent
-        ? (section.columns === 4 ? 'repeat(4, max-content)' :
-          section.columns === 3 ? 'repeat(3, max-content)' :
-            'repeat(2, max-content)')
-        : null
-
+      // Grid column classes - always responsive
       const gridCols = section.columns === 4
-        ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+        ? 'grid-cols-2 sm:grid-cols-2 lg:grid-cols-4'
         : section.columns === 3
           ? 'grid-cols-1 sm:grid-cols-3'
           : 'grid-cols-1 sm:grid-cols-2'
 
+      // Use consistent naming: title for heading, content for paragraph (like 'text' type)
+      const gridTitle = section.title
+      const gridContent = section.content
+
       return (
         <div>
-          {section.content && (
+          {gridTitle && (
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
               <h3 className={`${section.headerSize === 'md' ? 'text-xl' :
                 section.headerSize === 'lg' ? 'text-2xl' :
                   'text-lg'
-                } font-medium text-gray-900 ${section.description ? 'mb-4' : ''}`}>
-                {section.content}
+                } font-medium text-gray-900 ${gridContent ? 'mb-4' : ''}`}>
+                {gridTitle}
               </h3>
-              {section.description && (
+              {gridContent && (
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  {section.description}
+                  {gridContent}
                 </p>
               )}
             </div>
           )}
           <div className={section.fullWidth ? "w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" : "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"}>
             <div
-              className={`grid ${useFitContent ? 'justify-center' : gridCols}`}
+              className={`grid ${gridCols} justify-items-center image-grid-mobile`}
               style={{
                 rowGap: rowGapValue,
-                columnGap: columnGapValue,
-                ...(useFitContent ? { gridTemplateColumns } : {})
+                columnGap: columnGapValue
               }}
             >
               {section.images?.map((img, i) => (
                 <figure
                   key={i}
-                  className={`${img.breakout ? 'col-span-full flex justify-center' : ''}`}
+                  className={`${img.breakout ? 'col-span-full flex flex-col items-center' : 'w-full'}`}
                 >
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    loading="lazy"
-                    className={`${img.breakout ? '' : 'w-full'} ${img.noBorder ? '' : 'border border-gray-300 rounded'}`}
-                    style={{
-                      ...(img.noBorder ? {} : { borderWidth: '0.5px' }),
-                      ...img.style
-                    }}
-                  />
-                  {img.caption && (
-                    <figcaption className="mt-2 text-sm text-gray-500 text-center">
-                      {img.caption}
-                    </figcaption>
-                  )}
+                  <div style={img.style}>
+                    {img.title && (
+                      <h4 className={
+                        img.headerSize === 'sm' ? "text-lg font-medium text-gray-900 mb-2" :
+                          img.headerSize === 'md' ? "text-xl font-medium text-gray-900 mb-3" :
+                            "text-2xl font-bold mb-4"
+                      }>
+                        {img.title}
+                      </h4>
+                    )}
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      loading="lazy"
+                      className={`w-full h-auto ${img.noBorder ? '' : 'border border-gray-300 rounded'}`}
+                      style={img.noBorder ? {} : { borderWidth: '0.5px' }}
+                    />
+                    {img.content && (
+                      Array.isArray(img.content) ? (
+                        <div className="mt-3 space-y-2">
+                          {img.content.map((para, j) => (
+                            <p key={j} className="text-base text-gray-600 leading-relaxed">
+                              {para}
+                            </p>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="mt-3 text-base text-gray-600 leading-relaxed">
+                          {img.content}
+                        </p>
+                      )
+                    )}
+                    {img.caption && (
+                      <figcaption className="mt-2 text-sm text-gray-500 text-center">
+                        {img.caption}
+                      </figcaption>
+                    )}
+                  </div>
                 </figure>
               ))}
             </div>
@@ -368,9 +386,9 @@ function Section({ section }) {
 
     case 'video':
       return (
-        <figure className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <figure className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
           <div
-            className="border border-gray-300 rounded overflow-hidden"
+            className="w-full border border-gray-300 rounded overflow-hidden"
             style={{ borderWidth: '0.5px', ...section.style }}
           >
             <video
@@ -379,7 +397,7 @@ function Section({ section }) {
               loop
               muted
               playsInline
-              className="w-full block"
+              className="w-full h-auto block"
               style={section.cropTop ? {
                 marginTop: `-${section.cropTop}px`
               } : {}}
@@ -394,30 +412,49 @@ function Section({ section }) {
       )
 
     case 'insight-cards':
+      const insightGridCols = section.columns === 3 
+        ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' 
+        : section.columns === 1 
+          ? 'grid-cols-1' 
+          : 'grid-cols-1 sm:grid-cols-2';
       return (
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div className={section.columns === 3 ? "max-w-5xl mx-auto px-4 sm:px-6 lg:px-8" : "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"}>
+          <div className={`grid ${insightGridCols} gap-8`}>
             {section.cards?.map((card, i) => (
-              <div
-                key={i}
-                className="border border-gray-300 p-6 space-y-6 rounded bg-white"
-                style={{ borderWidth: '0.5px', backgroundColor: '#ffffff', ...card.style }}
-              >
-                <div>
-                  <h5 className="text-sm font-medium uppercase tracking-widest font-jetbrains mb-3" style={{ color: '#2b2b2b' }}>
-                    INSIGHT
-                  </h5>
-                  <p className="text-base text-gray-700 leading-relaxed font-satoshi">
-                    {card.insight}
-                  </p>
-                </div>
-                <div>
-                  <h5 className="text-sm font-medium uppercase tracking-widest font-jetbrains mb-3" style={{ color: '#2b2b2b' }}>
-                    OPPORTUNITY
-                  </h5>
-                  <p className="text-base text-gray-700 leading-relaxed font-satoshi">
-                    {card.opportunity}
-                  </p>
+              <div key={i} className="flex flex-col">
+                {card.image && (
+                  <div className="mb-4">
+                    <img
+                      src={card.image.src}
+                      alt={card.image.alt || ''}
+                      className="w-full rounded border border-gray-200"
+                      style={{ borderWidth: '0.5px' }}
+                    />
+                    {card.image.caption && (
+                      <p className="text-sm text-gray-500 mt-2 text-center font-satoshi">{card.image.caption}</p>
+                    )}
+                  </div>
+                )}
+                <div
+                  className="border border-gray-300 p-6 space-y-6 rounded bg-white"
+                  style={{ borderWidth: '0.5px', backgroundColor: '#ffffff' }}
+                >
+                  <div>
+                    <h5 className="text-sm font-medium uppercase tracking-widest font-jetbrains mb-3" style={{ color: '#0a0a0a' }}>
+                      INSIGHT
+                    </h5>
+                    <p className="text-base text-gray-700 leading-relaxed font-satoshi">
+                      {card.insight}
+                    </p>
+                  </div>
+                  <div>
+                    <h5 className="text-sm font-medium uppercase tracking-widest font-jetbrains mb-3" style={{ color: '#0a0a0a' }}>
+                      OPPORTUNITY
+                    </h5>
+                    <p className="text-base text-gray-700 leading-relaxed font-satoshi">
+                      {card.opportunity}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -462,8 +499,21 @@ function Section({ section }) {
                 className="border border-gray-300 p-6 space-y-6 rounded bg-white"
                 style={{ borderWidth: '0.5px', backgroundColor: '#ffffff' }}
               >
+                {card.image && (
+                  <div className="mb-4">
+                    <img
+                      src={card.image.src}
+                      alt={card.image.alt || ''}
+                      className="w-full rounded border border-gray-200"
+                      style={{ borderWidth: '0.5px' }}
+                    />
+                    {card.image.caption && (
+                      <p className="text-sm text-gray-500 mt-2 text-center font-satoshi">{card.image.caption}</p>
+                    )}
+                  </div>
+                )}
                 {card.title && (
-                  <h5 className="text-sm font-medium uppercase tracking-widest font-jetbrains mb-3" style={{ color: '#2b2b2b' }}>
+                  <h5 className="text-sm font-medium uppercase tracking-widest font-jetbrains mb-3" style={{ color: '#0a0a0a' }}>
                     {card.title}
                   </h5>
                 )}
@@ -594,7 +644,13 @@ function Section({ section }) {
       return (
         <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {section.title && (
-            <h2 className="text-2xl sm:text-3xl font-bold mb-6">{section.title}</h2>
+            <h2 className={
+              section.headerSize === 'sm' ? "text-lg font-medium text-gray-900 mb-2" :
+                section.headerSize === 'md' ? "text-xl font-medium text-gray-900 mb-6" :
+                  "text-2xl sm:text-3xl font-bold mb-6"
+            }>
+              {section.title}
+            </h2>
           )}
           <ul className="space-y-3">
             {section.items?.map((item, i) => (

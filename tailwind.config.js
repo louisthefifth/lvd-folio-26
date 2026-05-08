@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -12,18 +11,17 @@ export default {
         'satoshi': ['Satoshi', 'sans-serif'],
       },
       colors: {
-        'jetbrains-dark': '#1e1e1e',
-        'jetbrains-darker': '#121212',
-        'jetbrains-accent': '#ff6b00',
+        'bg-primary': '#fafafa',
+        'bg-secondary': '#ffffff',
+        'bg-elevated': '#f4f4f4',
+        'text-primary': '#0a0a0a',
+        'text-secondary': '#525252',
+        'border-primary': '#e5e5e5',
+        'border-secondary': 'rgba(0,0,0,0.08)',
+        'jetbrains-accent': '#046055',
         'jetbrains-blue': '#3592c4',
         'jetbrains-green': '#499c54',
         'jetbrains-purple': '#9876aa',
-      },
-      backgroundColor: {
-        'theme': 'var(--color-bg)',
-      },
-      textColor: {
-        'theme': 'var(--color-text)',
       },
     },
   },

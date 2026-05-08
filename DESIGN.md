@@ -1,29 +1,34 @@
 # Design System
 
+> Converted from dark UI to light UI on 2026-05-08.
+
 This document outlines the design system used in this portfolio site, inspired by the [JetBrains Mono landing page](https://www.jetbrains.com/lp/mono/).
 
 ## Colour Palette
 
 ### Primary Colours
-- **Background**: `#1b1b1b` - Main dark background
-- **Secondary Background**: `#2b2b2b` - Cards and elevated surfaces
-- **Text Primary**: `#ffffff` - Main text colour
-- **Text Secondary**: `#9ca3af` (gray-400) - Secondary text
+- **Background**: `#fafafa` - Main light background
+- **Secondary Background**: `#ffffff` - Cards and elevated surfaces
+- **Elevated Surface**: `#f4f4f4` - Code blocks and inset panels
+- **Text Primary**: `#0a0a0a` - Main text colour
+- **Text Secondary**: `#525252` - Secondary text
 
 ### Borders
-- **Primary Border**: `#374151` (gray-800) - Section dividers
-- **Secondary Border**: `rgba(255, 255, 255, 0.1)` - Subtle borders
+- **Primary Border**: `#e5e5e5` - Section dividers
+- **Secondary Border**: `rgba(0, 0, 0, 0.08)` - Subtle borders
 
 ### Interactive Elements
-- **Button Primary**: `#ffffff` on `#000000`
-- **Button Hover**: `#e5e5e5`
-- **Links**: `#ffffff` with hover effect to `#9ca3af`
+- **Button Primary**: White text on `#0a0a0a` background
+- **Button Hover**: `#0a0a0a` hovers to `#1f1f1f`
+- **Links**: `#0a0a0a` with hover effect to `#525252`
+- **Accent**: `#046055` - Active nav, writing links, underline indicators
 
 ## Typography
 
 ### Font Family
 - **Primary**: JetBrains Mono (loaded from Google Fonts)
-- **Fallback**: monospace
+- **Body / UI**: Satoshi (loaded from Fontshare)
+- **Fallback**: monospace / sans-serif
 
 ### Font Sizes
 - **Hero Title**: `3.75rem` (60px) on desktop, responsive down to `2.25rem` (36px)
@@ -47,27 +52,31 @@ Following Tailwind's spacing scale:
 ## Components
 
 ### Navigation
-- Fixed header with backdrop blur
-- Height: `4rem` (64px)
-- Background: `#1b1b1b` with 95% opacity
-- Border bottom: 1px solid gray-800
+- Fixed sidebar (desktop), hamburger drawer (mobile)
+- Background: `#ffffff` with `border-gray-200`
+- Active link: `text-[#141413] font-bold`
+- Inactive link: `text-gray-500`
 
 ### Code Block
-- Background: `#1b1b1b`
-- Line numbers: gray-600
-- Code text: gray-200
-- Hover effect on lines: white/5% opacity
+- Background: `#f4f4f4`
+- Line numbers: `#9ca3af`
+- Code text: `#1b1b1b` (intentionally dark — code aesthetic)
 - Font: JetBrains Mono
 
 ### Cards (Projects)
-- Background: `#2b2b2b`
-- Border: 1px solid gray-800
-- Hover border: gray-700
+- Background: `#ffffff`
+- Border: `1px solid #e5e5e5`
+- Hover border: `#d4d4d4`
 - Rounded: `0.5rem` (8px)
 
+### Project Titles
+- Outlined text: `WebkitTextStroke: '1.5px rgba(10,10,10,0.6)'`
+- Hover: fills to `#0a0a0a`
+- Tags: structured `{ industry, businessModel, discipline }` — rendered as pills in that order
+
 ### Buttons
-- **Primary**: White background, black text
-- **Hover**: gray-200 background
+- **Primary**: `#0a0a0a` background, white text
+- **Hover**: `#1f1f1f` background
 - **Padding**: `px-4 py-2` (small), `px-8 py-4` (large)
 - **Rounded**: `0.5rem` (8px)
 
@@ -90,7 +99,7 @@ xl: 1280px  // Extra large devices
 ### Hover Effects
 - Scale: `hover:scale-105` or `hover:scale-110`
 - Opacity: `hover:bg-white/10`
-- Colour: `hover:text-white`
+- Colour: `hover:text-[#0a0a0a]`
 
 ## Accessibility
 
@@ -108,16 +117,16 @@ xl: 1280px  // Extra large devices
 }
 
 ::-webkit-scrollbar-track {
-  background: #1b1b1b;
+  background: #fafafa;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3b3b3b;
+  background: #d4d4d4;
   border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #4b4b4b;
+  background: #a3a3a3;
 }
 ```
 
@@ -126,18 +135,22 @@ xl: 1280px  // Extra large devices
 ### Using the colour palette in components:
 
 ```jsx
-// Dark background
-className="bg-[#1b1b1b]"
+// Light background
+className="bg-[#fafafa]"
 
-// Secondary background
-className="bg-[#2b2b2b]"
+// Card / surface
+className="bg-white"
+
+// Elevated / code block background
+className="bg-[#f4f4f4]"
 
 // Border
-className="border border-gray-800"
+className="border border-gray-200"
 
 // Text
-className="text-white"          // Primary
-className="text-gray-400"       // Secondary
+className="text-[#0a0a0a]"    // Primary
+className="text-[#525252]"    // Secondary
+className="text-gray-500"     // Secondary (Tailwind alias)
 ```
 
 ### Responsive design pattern:
@@ -151,7 +164,7 @@ className="py-12 sm:py-16 lg:py-24"
 ### Interactive elements:
 
 ```jsx
-className="hover:text-white transition-colors"
+className="hover:text-[#0a0a0a] transition-colors"
 className="hover:scale-105 transition-transform duration-300"
 ```
 
@@ -162,7 +175,7 @@ When adding new sections, follow this structure:
 ```jsx
 <section 
   id="section-name" 
-  className="py-16 sm:py-20 lg:py-32 bg-[#1b1b1b] border-b border-gray-800"
+  className="py-16 sm:py-20 lg:py-32 border-b border-gray-200"
 >
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     {/* Content here */}
@@ -172,35 +185,11 @@ When adding new sections, follow this structure:
 
 ## Best Practices
 
-1. Always use the JetBrains Mono font for consistency
-2. Maintain the dark theme throughout (`#1b1b1b`)
-3. Use subtle borders (`border-gray-800`) to separate sections
+1. Always use JetBrains Mono for headings/labels; Satoshi for body copy
+2. Maintain the light theme throughout — no dark variants
+3. Use subtle borders (`border-gray-200`) to separate sections
 4. Ensure all interactive elements have hover states
 5. Keep spacing consistent using Tailwind's spacing scale
 6. Test responsiveness at all breakpoints
 7. Maintain sufficient contrast for accessibility
-
-
-## To fix on the homepage once all content is on the site
-
-## HERO
-- Make the titles (for everyone, designers, Recruiters in the hero tab bigger.
-- Remove the Designers tab, it's not relevant.
-- Increase the lettering space for the text in the Anti-remote work tab.
-
-## GENERAL AESTHETICS
-- Default to light mode
-- Make the icon a lighter grey in light mode
-
-## PROJECTS
-- Make the project title outline darker more legible when on light mode, also make the title clickable
-- Push the project tags down to the base of the card
-- Introduce a short description that sits to the far right of the card
-- 3 tags maximum per project (industry, business type (b2b, b2c etc.), type of work (UX, UI, UX/UI, branding etc.)
-
-## CLIENTS
-- Hyperlink the blocks and show an arrow or change when hovered over (desktop only)
-
-## CONTACT
-- TBD
-
+8. Client blocks link externally with desktop-only hover arrow (`@media (hover: hover)`)

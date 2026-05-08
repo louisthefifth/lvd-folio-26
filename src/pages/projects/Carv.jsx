@@ -52,10 +52,6 @@ import CaseStudyLayout from '../../components/CaseStudy/CaseStudyLayout'
  */
 
 const carvProject = {
-  // ═══════════════════════════════════════════════════════════════════════════
-  // HEADER SECTION - Edit these for the top of your case study
-  // ═══════════════════════════════════════════════════════════════════════════
-
   title: 'CARV',
   subtitle: 'getcarv.com',
   description: 'A digital ski coach that analyses your technique and guides with you live-audio as you ski.',
@@ -199,7 +195,7 @@ const carvProject = {
       type: 'image-grid',
       columns: 3,
       gap: -2,
-      content: 'One specific challenge',
+      title: 'One specific challenge',
       images: [
         {
           src: '/images/carv/1a. Carv - One specific challenge.png',
@@ -224,7 +220,7 @@ const carvProject = {
       type: 'image-grid',
       columns: 3,
       gap: -2,
-      content: 'Multiple challenges',
+      title: 'Multiple challenges',
       images: [
         {
           src: '/images/carv/2a. Carv - Multiple challenges.png',
@@ -249,7 +245,7 @@ const carvProject = {
       type: 'image-grid',
       columns: 3,
       gap: -2,
-      content: 'Recommended challenges',
+      title: 'Recommended challenges',
       images: [
         {
           src: '/images/carv/3a. Carv - Recommended challenge.png',
@@ -274,9 +270,9 @@ const carvProject = {
       type: 'image-grid',
       columns: 3,
       gap: 2,
-      content: 'Solution',
+      title: 'Solution',
       headerSize: 'md',
-      description: 'The final solution incorporated aspects from previous iterations to form a complete experience that gave skiers a push, but wasn\'t forceful.',
+      content: 'The final solution incorporated aspects from previous iterations to form a complete experience that gave skiers a push, but wasn\'t forceful.',
       images: [
         {
           src: '/images/carv/1. Carv - Challenge Solution.png',
@@ -685,7 +681,7 @@ const carvProject = {
       ]
     },
 
-    // ** PICK UP FROM HERE ** 
+    
 
     {
       type: 'text',

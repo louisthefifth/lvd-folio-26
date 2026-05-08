@@ -21,15 +21,6 @@ const Clients = () => {
     <section id="clients" className="scroll-mt-24">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         {clients.map((client) => {
-          const inner = (
-            <>
-              <span>{client.name}</span>
-              {client.url && (
-                <span className="hidden group-hover:inline ml-2 transition-opacity">→</span>
-              )}
-            </>
-          )
-
           if (client.url) {
             return (
               <a
@@ -37,9 +28,15 @@ const Clients = () => {
                 href={client.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center rounded-xl border border-gray-200 bg-white px-5 py-6 text-sm font-medium uppercase tracking-[0.2em] text-gray-600 transition-all duration-300 hover:border-gray-300 hover:text-[#141413]"
+                className="group flex items-center justify-between rounded-xl border border-gray-200 bg-white px-5 py-6 text-sm font-medium uppercase tracking-[0.2em] text-gray-600 transition-all duration-300 hover:border-gray-300 hover:text-[#141413]"
               >
-                {inner}
+                <span>{client.name}</span>
+                <span className="client-arrow ml-2 text-gray-400">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                </span>
               </a>
             )
           }
